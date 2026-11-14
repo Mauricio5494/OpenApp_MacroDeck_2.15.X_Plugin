@@ -1,0 +1,11 @@
+{
+  "type": "Plugin",
+  "name": "Open Multiple Apps",
+  "author": "sparky",
+  "repository": "",
+  "packageId": "com.sparky.openapps",
+  "version": "1.0.0",
+  "target-plugin-api-version": 41,
+  "target-macro-deck-version": "2.15.0",
+  "dll": "OpenAppsPlugin.dll"
+}
