@@ -1,74 +1,72 @@
 # Open Multiple Apps Plugin for Macro Deck 2.15.3
 
-A Macro Deck 2.15.3 plugin that lets you open multiple applications or files from a single button. You can run them all at once (asynchronously) or one after another (sequentially), depending on your needs.
+Un plugin de Macro Deck 2.15.3 que abre varias aplicaciones o archivos desde un solo botón. Puedes lanzarlas todas a la vez (de forma asíncrona) o una tras otra (secuencialmente), según lo que necesites.
 
-**Important:** This plugin is for **Macro Deck 2.15.3 only**. It is **not** compatible with Macro Deck 3.
+Solo funciona con **Macro Deck 2.15.3**. No es compatible con Macro Deck 3.
 
-## What it does
+Un pulsador abre la lista de ejecutables o archivos que configures:
 
-With one button press, this plugin opens a list of executables or files you configure:
+- `.exe` — lanzados directamente
+- `.txt`, `.pdf` y otros archivos — abiertos con la aplicación predeterminada de Windows (usando Shell Execute)
+- **Modo paralelo**: todas las apps se abren al mismo tiempo, sin esperar
+- **Modo secuencial**: cada app se abre solo después de que la anterior termine
 
-- **.exe files** — launched directly
-- **.txt, .pdf, and other files** — opened with the default Windows application (using Shell Execute)
-- **Parallel mode** — all apps open at the same time without waiting
-- **Sequential mode** — each app opens only after the previous one finishes
+## Características
 
-## Features
+- Añade varias rutas de archivo o ejecutable por botón
+- Activa o desactiva "Usar aplicación predeterminada" para archivos no ejecutables (.txt, .pdf, etc.)
+- Activa o desactiva ejecución asíncrona (abrir todo a la vez vs. uno por uno)
+- Diálogo de configuración sencillo dentro del configurador de acciones de Macro Deck
+- Ligero y sin dependencias (solo referencia `Macro Deck 2.dll`)
 
-- Add multiple file or executable paths per button
-- Toggle "Use default application" for non-executable files (.txt, .pdf, etc.)
-- Toggle asynchronous execution (open all at once vs. one by one)
-- Simple configuration dialog inside Macro Deck's action configurator
-- Lightweight and dependency-free (only references `Macro Deck 2.dll`)
+## Requisitos
 
-## Requirements
+- Windows 10 o Windows 11
+- Macro Deck 2.15.3 instalado
+- .NET 10 runtime (solo para desarrollo; no es necesario para ejecutar el plugin)
 
-- Windows 10 or Windows 11
-- Macro Deck 2.15.3 installed
-- .NET 10 runtime (for development only; not required to run the plugin)
+## Instalación en Windows
 
-## Installation on Windows
+1. Cierra Macro Deck completamente si está en ejecución.
 
-1. Close Macro Deck completely if it is running.
-
-2. Copy the plugin files to the Macro Deck plugins folder:
+2. Copia los archivos del plugin a la carpeta de plugins de Macro Deck:
 
    ```
-   C:\Users\<your-username>\AppData\Roaming\Macro Deck\plugins\OpenAPP\
+   C:\Users\<tu-usuario>\AppData\Roaming\Macro Deck\plugins\OpenAPP\
    ```
 
-   The folder should contain:
-   -  `OpenAppsPlugin.dll`
-   -  `OpenAppsPlugin.pdb`
-   -  `OpenAppsPlugin.deps.json`
-   -  `ExtensionManifest.json`
+   La carpeta debe contener:
+   - `OpenAppsPlugin.dll`
+   - `OpenAppsPlugin.pdb`
+   - `OpenAppsPlugin.deps.json`
+   - `ExtensionManifest.json`
 
-3. Make sure there is **no `.delete` file** inside the plugin folder. Macro Deck uses that file to ignore plugins.
+3. Asegúrate de que no haya ningún archivo `.delete` dentro de la carpeta del plugin. Macro Deck usa ese archivo para ignorar plugins.
 
-4. Start Macro Deck 2.15.3.
+4. Inicia Macro Deck 2.15.3.
 
-5. Go to the action configurator and look for **"Abrir Apps / Archivos"** (Open Multiple Apps) in the action list.
+5. Ve al configurador de acciones y busca **"Abrir Apps / Archivos"** (Open Multiple Apps) en la lista de acciones.
 
-6. Drag the action onto a button, then click it to configure:
-   - Add the paths to the apps or files you want to open
-   - Check or uncheck **"Ejecutar asíncrono (abrir todas a la vez)"** (Run asynchronously)
-   - Check or uncheck **"Usar aplicación predeterminada (para .txt, .pdf, etc.)"** (Use default application)
+6. Arrastra la acción a un botón y haz clic para configurarla:
+   - Añade las rutas de las apps o archivos que quieras abrir
+   - Marca o desmarca **"Ejecutar asíncrono (abrir todas a la vez)"** (Run asynchronously)
+   - Marca o desmarca **"Usar aplicación predeterminada (para .txt, .pdf, etc.)"** (Use default application)
 
-7. Save and test your button.
+7. Guarda y prueba tu botón.
 
-## Troubleshooting
+## Solución de problemas
 
-- **Plugin does not appear:** Make sure `ExtensionManifest.json` is in the same folder as the DLL, and that Macro Deck was restarted after installation.
-- **NullReferenceException on load:** Ensure `repository` in `ExtensionManifest.json` is not empty (`""`). It should contain a valid URL string.
-- **Plugin compiled for .NET 10:** The DLL targets `net10.0-windows`. Make sure your system meets the requirements for Macro Deck 2.15.3.
+- **El plugin no aparece:** asegúrate de que `ExtensionManifest.json` está en la misma carpeta que la DLL, y de que reiniciaste Macro Deck tras la instalación.
+- **NullReferenceException al cargar:** comprueba que `repository` en `ExtensionManifest.json` no esté vacío (`""`). Debe contener una URL válida.
+- **El plugin está compilado para .NET 10:** la DLL tiene como destino `net10.0-windows`. Asegúrate de que tu sistema cumple los requisitos de Macro Deck 2.15.3.
 
-## Compatibility
+## Compatibilidad
 
-| Version | Supported |
+| Versión | Soportada |
 |---------|-----------|
-| Macro Deck 2.15.3 | Yes |
+| Macro Deck 2.15.3 | Sí |
 | Macro Deck 3 | No |
 
-## License
+## Licencia
 
 MIT License
